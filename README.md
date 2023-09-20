@@ -1,10 +1,35 @@
-#MSDS 431 - Week 2
+# MSDS 431 - Week 2
 
-Running tests
+### Running Tests
+- Clone repo with `git clone git@github.com:jeremycruzz/msds301-wk2.git`
+- Install dependencies `go mod tidy`
+- Run tests with `go test -v ./...`
 
--`go test -v ./...`
+
+
 <details>
-<summary>Results from python</summary>
+<summary> Results from python (coefficients) </summary>
+
+```
+               coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          3.0001      1.125      2.667      0.026       0.456       5.544
+x1             0.5001      0.118      4.241      0.002       0.233       0.767
+------------------------------------------------------------------------------
+const          3.0009      1.125      2.667      0.026       0.455       5.547
+x2             0.5000      0.118      4.239      0.002       0.233       0.767
+------------------------------------------------------------------------------
+const          3.0025      1.124      2.670      0.026       0.459       5.546
+x3             0.4997      0.118      4.239      0.002       0.233       0.766
+------------------------------------------------------------------------------
+const          3.0017      1.124      2.671      0.026       0.459       5.544
+x4             0.4999      0.118      4.243      0.002       0.233       0.766
+```
+
+</details>
+
+<details>
+<summary>Results from python (full)</summary>
   
 ```
                             OLS Regression Results                            
