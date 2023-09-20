@@ -1,6 +1,10 @@
 #MSDS 431 - Week 2
 
-###Results from python
+Running tests
+
+-`go test -v ./...`
+<details>
+<summary>Results from python</summary>
 ```
                             OLS Regression Results                            
 ==============================================================================
@@ -103,3 +107,4 @@ Kurtosis:                       1.931   Cond. No.                         29.1
 Notes:
 [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 ```
+</details>
