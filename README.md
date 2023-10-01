@@ -1,24 +1,22 @@
 # MSDS 431 - Week 2
 
-### Setup
+### Setup (Windows 11 + Git Bash)
 - Clone repo with `git clone git@github.com:jeremycruzz/msds301-wk2.git`
 - Install go dependencies `go mod tidy`
 - Install py dependencies `py -m pip install pandas numpy statsmodels`
 
-### Building exe
+### Building executable
 - Run `go build src/app/main.go`
 
-### Running Go
+### Running Go executable
 - Run `main.exe`
 
 ### Running Tests
-- Clone repo with `git clone git@github.com:jeremycruzz/msds301-wk2.git`
-- Install dependencies `go mod tidy`
 - Run tests with `go test -v ./...`
 
 ### Running benchmark
 - run `chmod +x benchmark.sh`
-- run `./benchmark.sh {RUNS}` where RUNS is the amount of runs you want.
+- run `./benchmark.sh {RUNS}` where {RUNS} is the amount of runs you want.
 
 <details>
 <summary> Results from python (coefficients) </summary>
@@ -147,3 +145,35 @@ Notes:
 [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 ```
 </details>
+
+### Test Results
+The stats package produces the correct linear regression `m` and `b` coefficients using the Anscombe Quartet data set within a delta of `.001`.
+
+### Results
+
+|                 | Warmup 1 (50 runs) | Warmup 2 (100 runs) | Benchmark (1000 runs) |
+|-----------------|--------------------:|--------------------:|----------------------:|
+| Average time for Go     |       94,144,852 ns |        75,639,160 ns |          83,543,659 ns |
+| Average time for Python |      786,503,840 ns |       727,665,684 ns |         732,136,137 ns |
+| Average time for R      |      316,122,530 ns |       271,286,936 ns |         288,139,136 ns |
+
+### Analysis
+With our benchmark we can see that go is **8.76** times faster than python and **3.45** times faster than R. This highlights the advantage of using Go vs Python or R in our data processing pipeline. While the results follow the results of previous tests, the results of this test is does not produce as extreme values. This could be due to a few reasons:
+
+- The stats package in Go did not give `m` and `b` coeffecients directly, rather it gave points on the linear regression line. A function was written to produce the `m` and `b` coeffecients and may not be the most optimized.
+
+- Benchmarking was done using a `bash` script rather than having each program use their own language's benchmark utilities.
+
+- The test removed the plotting from all languages. Others may have kept them
+
+### Conclusion
+Go and the stats package provided sufficient (delta < .001) linear regression coeffecients results using the Anscombe Quartet dataset. The Go program ran much faster than the python and R for the Anscombe Quartet dataset and will likely be even faster for larger datasets.
+
+There are a few downsides to switching to go for our data processing pipeline: 
+- Existing programs in python will need to be re-written in go. 
+- The package doesn't give us the linear regression coefficients without extra work.
+- The learning curve for our developers and analysts to become comfortable with go.
+
+While existing programs will need to eventually be ported into go, we could write all future programs in go and not change existing programs until either a bottle-neck is found or time allows us to. The package doesn't give us the exact data we need but it is relatively easy to produce the data we need with additional programming. Go isn't too hard to learn. The time we lose for developers and analysts to 'ramp up' with go is worth the speed we are getting with our data. 
+
+With all of these points in mind I strongly reccomend that we use Go as our primary language moving forward.
