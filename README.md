@@ -1,11 +1,24 @@
 # MSDS 431 - Week 2
 
+### Setup
+- Clone repo with `git clone git@github.com:jeremycruzz/msds301-wk2.git`
+- Install go dependencies `go mod tidy`
+- Install py dependencies `py -m pip install pandas numpy statsmodels`
+
+### Building exe
+- Run `go build src/app/main.go`
+
+### Running Go
+- Run `main.exe`
+
 ### Running Tests
 - Clone repo with `git clone git@github.com:jeremycruzz/msds301-wk2.git`
 - Install dependencies `go mod tidy`
 - Run tests with `go test -v ./...`
 
-
+### Running benchmark
+- run `chmod +x benchmark.sh`
+- run `./benchmark.sh {RUNS}` where RUNS is the amount of runs you want.
 
 <details>
 <summary> Results from python (coefficients) </summary>
